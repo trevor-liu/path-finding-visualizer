@@ -35,6 +35,29 @@ class Footer extends React.Component {
     );
   }
 }
+/*
+function Square() {
+  return (
+    <button className="square" onClick={}></button>
+  )
+}
+
+class Grid extends React.Component {
+  renderSquare(i) {
+    return (
+      <Square
+        value={this.props.squares[i]}
+      />
+    );
+  }
+}
+*/
+function Square() {
+  return (
+    <button class='node'></button>
+  )
+}
+
 
 class App extends React.Component {
   render () {
@@ -42,6 +65,7 @@ class App extends React.Component {
       <div>
         <TopHeader />
         <Footer />
+        <Square />
       </div>
     );
   }

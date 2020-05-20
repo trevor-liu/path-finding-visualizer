@@ -28,3 +28,14 @@
   color: white;
 }
 
+.node {
+  border-width: 2px;
+  border-color: lightblue;
+  background-color: white;
+  width: 25px;
+  height: 25px;
+}
+
+.node:hover {
+  background-color: blue;
+}
