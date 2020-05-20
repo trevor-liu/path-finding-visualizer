@@ -35,27 +35,65 @@ class Footer extends React.Component {
     );
   }
 }
-/*
-function Square() {
-  return (
-    <button className="square" onClick={}></button>
-  )
+
+class Square extends React.Component {
+  const = {
+    row: this.props.row,
+    col: this.props.col
+  }
+
+  state = {
+    isClicked: false,
+  }
+  render () {
+    return (
+      <button className={this.state.isClicked ? "clicked-node" : "node"} onClick= { () => {
+        if (this.state.isClicked === true){
+          this.setState({isClicked: false})
+        }
+        else {
+          this.setState({isClicked: true})
+        };
+        }     
+      }></button>
+    );
+  }   
 }
 
-class Grid extends React.Component {
-  renderSquare(i) {
-    return (
-      <Square
-        value={this.props.squares[i]}
-      />
-    );
+const makeGrid = () => {
+  const grid = [];
+  for (let row=0; row<20; row++) {
+    const current_row = [];
+    for (let col=0; col<50; col++){
+      current_row.push(col);
+    }
+    grid.push(current_row);
   }
-}
-*/
-function Square() {
-  return (
-    <button class='node'></button>
-  )
+  return grid;
+};
+
+
+class Grid extends React.Component {
+  constructor() {
+    super();
+    this.state = {
+      grid: []
+    }
+  }
+
+  componentDidMount() {
+    const grid = makeGrid();
+    this.setState({grid})
+  }
+
+  render () {
+    const grid = this.state;
+    console.log(grid)
+      return (
+        <div></div>
+      )
+  }
+
 }
 
 
@@ -65,7 +103,7 @@ class App extends React.Component {
       <div>
         <TopHeader />
         <Footer />
-        <Square />
+        <Grid />
       </div>
     );
   }
