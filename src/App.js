@@ -1,26 +1,34 @@
 import React from 'react';
-import logo from './logo.svg';
 import './App.css';
 
 function App() {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+      TopHeader()
+  );
+}
+
+function TopHeader() {
+  return (
+    <div>
+      <div class="title-header">Path Finding Visualizer</div>
+      <ul class="nav-bar">
+        <li>algorithms:
+            <select>
+              <option>Dijkstra's</option>
+              <option>A* Search</option>
+              <option>Breath First Search</option>
+              <option>Greedy Best First Search</option>
+              <option>Depth First Search</option>
+            </select>
+        </li>
+        <li class="nav-element"><button type="button" class="nav-button">Start</button></li>
+        <li class="nav-element"><button type="button" class="nav-button">Stop</button></li>
+        <li class="nav-element"><button type="button" class="nav-button">Weighted node</button></li>
+        <li class="nav-element"><button type="button" class="nav-button">Tutorial</button></li>
+      </ul>
     </div>
   );
 }
+
 
 export default App;
