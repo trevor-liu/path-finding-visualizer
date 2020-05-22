@@ -1,0 +1,15 @@
+.node-start {
+    border-width: 2px;
+    border-color: lightblue;
+    width: 25px;
+    height: 25px;
+    background-color: darkgoldenrod;
+}
+
+.node-finish {
+    border-width: 2px;
+    border-color: lightblue;
+    width: 25px;
+    height: 25px;
+    background-color: darkblue;
+}
