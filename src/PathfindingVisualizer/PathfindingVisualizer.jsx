@@ -8,6 +8,8 @@ const START_NODE_COL = 8;
 const FINISH_NODE_ROW = 10;
 const FINISH_NODE_COL = 33;
 
+
+
 // Defining a class for PathfindingVisulizer for App.js
 export default class PathfindingVisulizer extends Component {
   constructor() {
@@ -51,9 +53,9 @@ export default class PathfindingVisulizer extends Component {
 // generating a matrix called grid (20X40) with node for each index
 const makeGrid = () => {
   const grid = [];
-  for (let row = 0; row < 44; row++) {
+  for (let row = 0; row < 30; row++) {
     const current_row = [];
-    for (let col = 0; col < 82; col++) {
+    for (let col = 0; col < 60; col++) {
       current_row.push(createNode(col, row));
     }
     grid.push(current_row);
