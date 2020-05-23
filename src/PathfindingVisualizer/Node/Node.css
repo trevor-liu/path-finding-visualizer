@@ -1,5 +1,5 @@
 .node {
-    border: lightblue 2px solid;
+    border: lightblue 1px solid;
     background-color: white;
     width: 25px;
     height: 25px;
@@ -9,7 +9,7 @@
 }
 
 .node-start {
-    border: lightblue 2px solid;
+    border: lightblue 1px solid;
     width: 25px;
     height: 25px;
     background-color: darkgoldenrod;
@@ -19,7 +19,7 @@
 }
 
 .node-finish {
-    border: lightblue 2px solid;
+    border: lightblue 1px solid;
     width: 25px;
     height: 25px;
     background-color: darkblue;
