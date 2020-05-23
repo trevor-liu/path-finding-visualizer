@@ -28,30 +28,3 @@
   color: white;
 }
 
-.node {
-  border-width: 2px;
-  border-color: lightblue;
-  background-color: white;
-  width: 25px;
-  height: 25px;
-}
-
-.clicked-node {
-  border-width: 2px;
-  border-color: lightblue;
-  background-color: black;
-  width: 25px;
-  height: 25px;
-}
-
-.node:hover {
-  background-color: red;
-}
-
-.node:focus {
-  outline: none;
-}
-
-.clicked-node:focus {
-  outline: none;
-}

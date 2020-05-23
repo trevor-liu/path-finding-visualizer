@@ -1,3 +1,8 @@
 .grid {
   text-align: center;
 }
+
+.row {
+  margin: 0 0;
+  padding-left: 15px;
+}

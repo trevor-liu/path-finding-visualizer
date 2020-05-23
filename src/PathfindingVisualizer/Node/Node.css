@@ -1,15 +1,50 @@
+.node {
+    border: lightblue 2px solid;
+    background-color: white;
+    width: 25px;
+    height: 25px;
+    display: inline-block;
+    /* outline: aqua 1px solid; */
+    margin: 0 0;
+}
+
 .node-start {
-    border-width: 2px;
-    border-color: lightblue;
+    border: lightblue 2px solid;
     width: 25px;
     height: 25px;
     background-color: darkgoldenrod;
+    display: inline-block;
+    /* outline: aqua 1px solid; */
+    margin: 0 0;
 }
 
 .node-finish {
-    border-width: 2px;
-    border-color: lightblue;
+    border: lightblue 2px solid;
     width: 25px;
     height: 25px;
     background-color: darkblue;
+    display: inline-block;
+    /* outline: aqua 1px solid; */
+    margin: 0 0;
 }
+
+
+  /* .clicked-node {
+    border-width: 2px;
+    border-color: lightblue;
+    background-color: black;
+    width: 25px;
+    height: 25px;
+  } */
+/*   
+  .node:hover {
+    background-color: red;
+  }
+  
+  .node:focus {
+    outline: none;
+  }
+  
+  .clicked-node:focus {
+    outline: none;
+  } */

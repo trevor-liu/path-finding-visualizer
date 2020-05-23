@@ -7,9 +7,8 @@ export default class Node extends Component {
   }
   render() {
     const {col, row, isFinish, isStart} = this.props;
-    console.log(this.props);
     return (
-      <div className={isFinish? "node-finish": isStart? "node-start":""}> </div>
+      <div className={isFinish? "node-finish": isStart? "node-start":"node"}> </div>
       // <button
       //   className={isFinish? "node-finish": isStart? "node-start": this.state.isClicked ? "clicked-node" : "node"}
       //   onClick={() => {
