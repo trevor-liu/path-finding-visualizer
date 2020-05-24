@@ -6,3 +6,11 @@
   margin: 0 0;
   padding-left: 15px;
 }
+
+.nav-bar {
+  list-style-type: none;
+  display: flex;
+  justify-content: center;
+  background-color: cadetblue;
+  margin: 0 0;
+}

@@ -6,7 +6,7 @@ class App extends Component {
   render() {
     return (
       <div>
-        <TopHeader />
+        <TopHeader/>
         <PathfindingVisualizer></PathfindingVisualizer>
         <Footer />
       </div>
@@ -18,8 +18,8 @@ class TopHeader extends React.Component {
   render() {
     return (
       <div id="page-header">
-        <div class="title-header">Path Finding Visualizer</div>
-        <ul class="nav-bar">
+        <div className="title-header">Path Finding Visualizer</div>
+        <ul className="nav-bar">
           <li>
             algorithms:
             <select>
@@ -30,23 +30,18 @@ class TopHeader extends React.Component {
               <option>Depth First Search</option>
             </select>
           </li>
-          <li class="nav-element">
-            <button type="button" class="nav-button">
-              Start
-            </button>
-          </li>
-          <li class="nav-element">
-            <button type="button" class="nav-button">
+          <li className="nav-element">
+            <button type="button" className="nav-button">
               Stop
             </button>
           </li>
-          <li class="nav-element">
-            <button type="button" class="nav-button">
+          <li className="nav-element">
+            <button type="button" className="nav-button">
               Weighted node
             </button>
           </li>
-          <li class="nav-element">
-            <button type="button" class="nav-button">
+          <li className="nav-element">
+            <button type="button" className="nav-button">
               Tutorial
             </button>
           </li>
@@ -59,7 +54,7 @@ class TopHeader extends React.Component {
 class Footer extends React.Component {
   render() {
     return (
-      <div id="page-footer" class="footer">
+      <div id="page-footer" className="footer">
         Version 1.0
       </div>
     );
