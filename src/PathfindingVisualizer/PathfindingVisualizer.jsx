@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import "./PathfindingVisualizer.css";
 import Node from "./Node/Node";
+import Dijkstra from "./Algorithms/Dijkstra"
 
 // set the Default starting and end node
 const START_NODE_ROW = 10;
@@ -24,6 +25,8 @@ export default class PathfindingVisulizer extends Component {
     const grid = makeGrid();
     this.setState({ grid });
   }
+
+
 
   render() {
     const { grid } = this.state;
@@ -63,6 +66,7 @@ const makeGrid = () => {
   return grid;
 };
 
+// This is the node we use for backend algorithms, the one in Node.jsx is for displaying on to the screen taking each node's properties
 // creating a Node with properties
 const createNode = (col, row) => {
   return {
