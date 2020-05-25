@@ -29,26 +29,16 @@
   border: lightblue 1px solid;
   width: 25px;
   height: 25px;
-  background-color: black;
+  background-color: rgb(0, 255, 64);
   display: inline-block;
   margin: 0 0;
 }
-  /* .clicked-node {
-    border-width: 2px;
-    border-color: lightblue;
-    background-color: black;
-    width: 25px;
-    height: 25px;
-  } */
-/*   
-  .node:hover {
-    background-color: red;
-  }
-  
-  .node:focus {
-    outline: none;
-  }
-  
-  .clicked-node:focus {
-    outline: none;
-  } */
+
+.node-animation {
+  border: lightblue 1px solid;
+  width: 25px;
+  height: 25px;
+  background-color: rgb(0, 195, 255);
+  display: inline-block;
+  margin: 0 0;
+}

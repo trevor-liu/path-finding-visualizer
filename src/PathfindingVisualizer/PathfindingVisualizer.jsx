@@ -4,10 +4,10 @@ import Node from "./Node/Node";
 import Dijkstra from "./Algorithms/Dijkstra"
 
 // set the Default starting and end node
-const START_NODE_ROW = 1;
-const START_NODE_COL = 1;
-const FINISH_NODE_ROW = 40;
-const FINISH_NODE_COL = 75;
+const START_NODE_ROW = 20;
+const START_NODE_COL = 20;
+const FINISH_NODE_ROW = 20;
+const FINISH_NODE_COL = 70;
 
 
 
@@ -28,14 +28,31 @@ class PathfindingVisulizer extends Component {
     this.setState({ grid });
   }
 
-  animateShortest() {
+  animateAlgo() {
     const {grid} = this.state;
     const startNode = grid[START_NODE_ROW][START_NODE_COL]
     const finishNode = grid[FINISH_NODE_ROW][FINISH_NODE_COL];
-    const emptyList = Dijkstra(grid, startNode, finishNode);
-    // generating a shortestPath with starting node as the first index
+    const visitedNodeinOrder = Dijkstra(grid, startNode, finishNode);
     const shortestPathList = shortestPath(finishNode);
-    for (let index = 0; index < shortestPathList.length-1; index++) {
+
+    // generating a shortestPath with starting node as the first index
+    for (let index = 1; index <= visitedNodeinOrder.length-1; index++) {
+      if (index === visitedNodeinOrder.length-1) {
+        setTimeout(() => {
+          this.animateShortest(shortestPathList);
+        }, index*1);
+        return;    
+      }
+      setTimeout(() => {
+        const currentNode = visitedNodeinOrder[index];
+        document.getElementById(`${currentNode.row},${currentNode.col}`).className="node-animation"
+       }, 1*index);
+    }
+  }
+
+  animateShortest(shortestPathList) {
+    // generating a shortestPath with starting node as the first index
+    for (let index = 1; index < shortestPathList.length-1; index++) {
       setTimeout(() => {
         const currentNode = shortestPathList[index];
         document.getElementById(`${currentNode.row},${currentNode.col}`).className="node-shortest-path"
@@ -51,7 +68,7 @@ class PathfindingVisulizer extends Component {
       <div>
         <div className="nav-bar">
           <button onClick={() => {
-            this.animateShortest()
+            this.animateAlgo()
           }}>Visualize Dijkstra</button>
         </div>
         <div className="grid">
@@ -124,5 +141,6 @@ const shortestPath = (finishNode) => {
   }
   return shortestPathList;
 }
+
 
 export default PathfindingVisulizer;
