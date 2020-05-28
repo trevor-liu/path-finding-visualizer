@@ -9,10 +9,10 @@ import Dijkstra from "./Algorithms/Dijkstra"
 
 
 // set the Default starting and end node
-const START_NODE_ROW = 1;
-const START_NODE_COL = 1;
-const FINISH_NODE_ROW = 40;
-const FINISH_NODE_COL = 40;
+const START_NODE_ROW = Math.floor(Math.floor(window.innerHeight/25)/3);
+const START_NODE_COL = Math.floor(Math.floor(window.innerWidth/25)/4)*1;
+const FINISH_NODE_ROW = Math.floor(Math.floor(window.innerHeight/25)/3);
+const FINISH_NODE_COL = Math.floor(Math.floor(window.innerWidth/25)/4)*3;
 
 
 
