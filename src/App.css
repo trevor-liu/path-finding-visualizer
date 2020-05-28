@@ -2,10 +2,13 @@
   background-color: #1e00a5;
   color: white;
   text-align: center;
-  font-size: 30px;
+  font-size: 35px;
   padding: 5px 0;
+  font-weight: bold;
 }
-
+.title-header:hover {
+  color: brown;
+}
 .nav-bar {
   list-style-type: none;
   display: flex;
@@ -28,3 +31,31 @@
   color: white;
 }
 
+#dropdown-basic-button {
+  background-color: cadetblue;
+  border: none;
+  font-size: 30px; 
+  font-weight: bold;
+}
+
+#dropdown-basic-button:focus {
+  outline: none;
+  box-shadow: none;
+}
+
+#dropdown-basic-button:hover{
+  color: brown;
+}
+
+#stop-vis, #weight-btn, #tuitorial-btn {
+  font-size: 30px;
+  background-color: #1e00a5;
+  border: none;
+  font-weight: bold;
+  background-color: cadetblue;
+}
+
+
+#stop-vis:hover, #weight-btn:hover, #tuitorial-btn:hover {
+  color: brown;
+}

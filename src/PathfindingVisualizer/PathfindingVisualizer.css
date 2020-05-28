@@ -14,3 +14,49 @@
   background-color: cadetblue;
   margin: 0 0;
 }
+
+.visual-div {
+  text-align: center;
+  background-color: #1e00a5;
+}
+
+#visualize-btn:focus {
+  outline: none;
+  box-shadow: none;
+}
+
+@keyframes changecolor {
+  0% {
+    background-color: #1e00a5;
+  }
+  50% {
+    background-color: maroon;
+  }
+  100% {
+    background-color: #1e00a5;
+  }
+}
+
+.changecolor {
+  animation-name: changecolor;
+  animation-duration: 4s;
+  animation-fill-mode: forwards;
+  color: white;
+  font-size: 30px;
+  font-weight: bold;
+  text-align: center;
+  padding-top: 1px;
+  padding-bottom: 0px;
+}
+
+#visualize-btn {
+  font-size: 30px;
+  font-weight: bold;
+  background-color: #1e00a5;
+  border: none;
+}
+
+#visualize-btn:hover {
+  color: gold;
+}
+

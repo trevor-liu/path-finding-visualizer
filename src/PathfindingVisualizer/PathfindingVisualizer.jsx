@@ -1,8 +1,13 @@
 import React, { Component } from "react";
 import "./PathfindingVisualizer.css";
 import Node from "./Node/Node";
+
+import Dijkstra from "./Algorithms/Dijkstra"
+import Button from 'react-bootstrap/Button'
+
 // import Dijkstra from "./Algorithms/Dijkstra"
 import Astar from "./Algorithms/Astar"
+
 
 // set the Default starting and end node
 const START_NODE_ROW = 1;
@@ -63,16 +68,16 @@ class PathfindingVisulizer extends Component {
     }
   }
 
-  
   render() {
     const { grid } = this.state;
-
     return (
       <div>
-        <div className="nav-bar">
-          <button onClick={() => {
+        <div className="visual-div" id="visual-div">
+          <Button id="visualize-btn" onClick={() => {
+            document.getElementById("visualize-btn").classList.toggle("changecolor")
+            document.getElementById("visual-div").classList.toggle("changecolor")
             this.animateAlgo()
-          }}>Visualize Dijkstra</button>
+          }}>Visualize Dijkstra</Button>
         </div>
         <div className="grid">
           {grid.map((row, rowIDX) => 
