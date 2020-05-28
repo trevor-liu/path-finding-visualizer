@@ -1,12 +1,13 @@
 import React, { Component } from "react";
 import "./PathfindingVisualizer.css";
 import Node from "./Node/Node";
-import Dijkstra from "./Algorithms/Dijkstra"
+// import Dijkstra from "./Algorithms/Dijkstra"
+import Astar from "./Algorithms/Astar"
 
 // set the Default starting and end node
-const START_NODE_ROW = 20;
-const START_NODE_COL = 20;
-const FINISH_NODE_ROW = 20;
+const START_NODE_ROW = 1;
+const START_NODE_COL = 1;
+const FINISH_NODE_ROW = 40;
 const FINISH_NODE_COL = 70;
 
 
@@ -32,7 +33,7 @@ class PathfindingVisulizer extends Component {
     const {grid} = this.state;
     const startNode = grid[START_NODE_ROW][START_NODE_COL]
     const finishNode = grid[FINISH_NODE_ROW][FINISH_NODE_COL];
-    const visitedNodeinOrder = Dijkstra(grid, startNode, finishNode);
+    const visitedNodeinOrder = Astar(grid, startNode, finishNode);
     const shortestPathList = shortestPath(finishNode);
 
     // generating a shortestPath with starting node as the first index
@@ -50,13 +51,15 @@ class PathfindingVisulizer extends Component {
     }
   }
 
+
+
   animateShortest(shortestPathList) {
     // generating a shortestPath with starting node as the first index
     for (let index = 1; index < shortestPathList.length-1; index++) {
       setTimeout(() => {
         const currentNode = shortestPathList[index];
         document.getElementById(`${currentNode.row},${currentNode.col}`).className="node-shortest-path"
-      }, 10*index);
+      }, 20*index);
     }
   }
 
@@ -125,6 +128,7 @@ const createNode = (col, row) => {
 
     // properties for algorithms
     distance: Infinity,
+    distanceFromEndNode: 0,   // for Astar algorithm
     isVisited: false,
     previousNode: null,
   };

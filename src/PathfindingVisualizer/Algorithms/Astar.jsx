@@ -1,14 +1,14 @@
-function Dijkstra(grid, startNode, endNode) {
+function Astar(grid, startNode, endNode) {
     // first we need an empty array for returning node in ordered
     const visitedNode = [];
     startNode.distance = 0;
     // store all the unvisitedNode in an array
-    const unvisitedNode = getAllNode(grid);
+    const unvisitedNode = getAllNode(grid, endNode);
 
     // while loop when unvisitedNode is not empty
     while (!!unvisitedNode.length) {
         // sort the unvisitedNode
-        unvisitedNode.sort((first, second) => first.distance - second.distance);
+        sortingUnvisted(unvisitedNode);
         // first we get the closest node to the last node
         const closestNode = unvisitedNode.shift();
         // add the closest node in visited node in ordered
@@ -21,20 +21,34 @@ function Dijkstra(grid, startNode, endNode) {
         // and set the neigbouring node pointed back to closest node
         updateNeighbourNodes(closestNode, grid);
     }
+
+}
+
+function sortingUnvisted(unvisitedNode) {
+    unvisitedNode.sort((first, second) => 
+        (first.distance + first.distanceFromEndNode) - (second.distance + second.distanceFromEndNode)
+    )
 }
 
 
-function getAllNode(grid) {
+function getAllNode(grid, endNode) {
     const allNode = []
     for (let i = 0; i < grid.length; i++) {
         for (let j= 0; j < grid[i].length; j++) {
+            manhattanDistance(grid[i][j], endNode);
             allNode.push(grid[i][j]);
         }  
     }
     return allNode;
 }
 
+function manhattanDistance(NodeA, endNode) {
+    const {row: rowA, col: colA} = NodeA;
+    const {row: rowB, col: colB} = endNode;
 
+    NodeA.distanceFromEndNode = Math.abs(rowA-rowB) + Math.abs(colA-colB);
+    return;
+}
 
 function updateNeighbourNodes(node, grid) {
     const {col, row} = node;
@@ -54,5 +68,4 @@ function updateNeighbourNodes(node, grid) {
     }    
 }
 
-
-export default Dijkstra;
+export default Astar;
