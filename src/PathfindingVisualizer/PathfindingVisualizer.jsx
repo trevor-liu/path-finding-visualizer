@@ -61,16 +61,15 @@ class PathfindingVisulizer extends Component {
     }
   }
 
-  
   render() {
     const { grid } = this.state;
-
     return (
       <div>
         <div className="visual-div" id="visual-div">
-          <Button id="visualize-btn" varaiant="primary" onClick={() => {
+          <Button id="visualize-btn" onClick={() => {
+            document.getElementById("visualize-btn").classList.toggle("changecolor")
+            document.getElementById("visual-div").classList.toggle("changecolor")
             this.animateAlgo()
-            document.getElementById("visual-div").className = "pressed-visual"
           }}>Visualize Dijkstra</Button>
         </div>
         <div className="grid">

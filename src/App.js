@@ -36,7 +36,7 @@ class TopHeader extends React.Component {
         <div className="title-header">Path Finding Visualizer</div>
         <ul className="nav-bar">
           <li>
-            <DropdownButton id="dropdown-basic-button" title={this.state.dropDownValue}>
+            <DropdownButton size="xl"id="dropdown-basic-button" title={this.state.dropDownValue}>
               <Dropdown.Item as="button">
                 <div onClick={(e) => this.changeValue(e.target.textContent)}>Dijkstra</div>
               </Dropdown.Item>

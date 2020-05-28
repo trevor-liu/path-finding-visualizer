@@ -52,7 +52,9 @@
   background-color: #1e00a5;
   border: none;
   font-weight: bold;
+  background-color: cadetblue;
 }
+
 
 #stop-vis:hover, #weight-btn:hover, #tuitorial-btn:hover {
   color: brown;
