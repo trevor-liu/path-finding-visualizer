@@ -2,7 +2,8 @@ import React, { Component } from "react";
 import "./App.css";
 import PathfindingVisualizer from "./PathfindingVisualizer/PathfindingVisualizer";
 import DropdownButton from 'react-bootstrap/DropdownButton';
-import Dropdown from 'react-bootstrap/Dropdown'; 
+import Dropdown from 'react-bootstrap/Dropdown';
+import Button from 'react-bootstrap/Button' 
 
 class App extends Component {
   render() {
@@ -35,39 +36,38 @@ class TopHeader extends React.Component {
         <div className="title-header">Path Finding Visualizer</div>
         <ul className="nav-bar">
           <li>
-          <DropdownButton id="dropdown-basic-button" title={this.state.dropDownValue}>
-            <Dropdown.Item as="button">
-              <div onClick={(e) => this.changeValue(e.target.textContent)}>Dijkstra</div>
-            </Dropdown.Item>
-            <Dropdown.Item as="button">
-            <div onClick={(e) => this.changeValue(e.target.textContent)}>A* Search</div>
-            </Dropdown.Item>
-            <Dropdown.Item as="button">
-            <div onClick={(e) => this.changeValue(e.target.textContent)}>Breath First search</div>
-            </Dropdown.Item>
-            <Dropdown.Item as="button">
-            <div onClick={(e) => this.changeValue(e.target.textContent)}>Greedy Best First search</div>
-            </Dropdown.Item>
-            <Dropdown.Item as="button">
-             <div onClick={(e) => this.changeValue(e.target.textContent)}>Depth First search</div>
-            </Dropdown.Item>
-          </DropdownButton>
-
+            <DropdownButton id="dropdown-basic-button" title={this.state.dropDownValue}>
+              <Dropdown.Item as="button">
+                <div onClick={(e) => this.changeValue(e.target.textContent)}>Dijkstra</div>
+              </Dropdown.Item>
+              <Dropdown.Item as="button">
+              <div onClick={(e) => this.changeValue(e.target.textContent)}>A* Search</div>
+              </Dropdown.Item>
+              <Dropdown.Item as="button">
+              <div onClick={(e) => this.changeValue(e.target.textContent)}>Breath First search</div>
+              </Dropdown.Item>
+              <Dropdown.Item as="button">
+              <div onClick={(e) => this.changeValue(e.target.textContent)}>Greedy Best First search</div>
+              </Dropdown.Item>
+              <Dropdown.Item as="button">
+              <div onClick={(e) => this.changeValue(e.target.textContent)}>Depth First search</div>
+              </Dropdown.Item>
+            </DropdownButton>
           </li>
           <li className="nav-element">
-            <button type="button" className="nav-button">
+            <Button id="stop-vis">
               Stop
-            </button>
+            </Button>
           </li>
           <li className="nav-element">
-            <button type="button" className="nav-button">
+            <Button id="weight-btn">
               Weighted node
-            </button>
+            </Button>
           </li>
           <li className="nav-element">
-            <button type="button" className="nav-button">
+            <Button id="tuitorial-btn">
               Tutorial
-            </button>
+            </Button>
           </li>
         </ul>
       </div>

@@ -67,9 +67,10 @@ class PathfindingVisulizer extends Component {
 
     return (
       <div>
-        <div className="nav-bar">
-          <Button varaiant="primary" onClick={() => {
+        <div className="visual-div" id="visual-div">
+          <Button id="visualize-btn" varaiant="primary" onClick={() => {
             this.animateAlgo()
+            document.getElementById("visual-div").className = "pressed-visual"
           }}>Visualize Dijkstra</Button>
         </div>
         <div className="grid">
