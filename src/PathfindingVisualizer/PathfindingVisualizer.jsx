@@ -11,8 +11,8 @@ import Dijkstra from "./Algorithms/Dijkstra"
 // set the Default starting and end node
 const START_NODE_ROW = 1;
 const START_NODE_COL = 1;
-const FINISH_NODE_ROW = 30;
-const FINISH_NODE_COL = 30;
+const FINISH_NODE_ROW = 40;
+const FINISH_NODE_COL = 40;
 
 
 
@@ -21,10 +21,11 @@ class PathfindingVisulizer extends Component {
   constructor() {
     super();
     this.state = {
+      width: window.innerWidth,
+      height: window.innerHeight,
       grid: [],
     };
   }
-
 
 
   // It render initialy to greate a grid
@@ -68,6 +69,7 @@ class PathfindingVisulizer extends Component {
   }
 
   render() {
+    console.log(window.innerHeight);
     const { grid } = this.state;
     return (
       <div>
@@ -109,15 +111,16 @@ class PathfindingVisulizer extends Component {
 // generating a matrix called grid (20X40) with node for each index
 const makeGrid = () => {
   const grid = [];
-  for (let row = 0; row < 43; row++) {
+  for (let row = 0; row < window.innerHeight/25-6; row++) {
     const current_row = [];
-    for (let col = 0; col < 82; col++) {
+    for (let col = 0; col < window.innerWidth/25; col++) {
       current_row.push(createNode(col, row));
     }
     grid.push(current_row);
   }
   return grid;
 };
+
 
 // This is the node we use for backend algorithms, the one in Node.jsx is for displaying on to the screen taking each node's properties
 // creating a Node with properties
