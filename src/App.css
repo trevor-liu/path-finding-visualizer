@@ -2,10 +2,12 @@
   background-color: #1e00a5;
   color: white;
   text-align: center;
-  font-size: 35px;
+  font-size: 25px;
   padding: 5px 0;
   font-weight: bold;
 }
+
+/* hover the title "Path Finding Visualizer*/
 .title-header:hover {
   color: brown;
 }
@@ -34,7 +36,7 @@
 #dropdown-basic-button {
   background-color: cadetblue;
   border: none;
-  font-size: 30px; 
+  font-size: 15px; 
   font-weight: bold;
 }
 
@@ -48,7 +50,7 @@
 }
 
 #stop-vis, #weight-btn, #tuitorial-btn {
-  font-size: 30px;
+  font-size: 15px;
   background-color: #1e00a5;
   border: none;
   font-weight: bold;

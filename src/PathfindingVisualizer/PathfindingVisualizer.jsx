@@ -2,18 +2,17 @@ import React, { Component } from "react";
 import "./PathfindingVisualizer.css";
 import Node from "./Node/Node";
 
-import Dijkstra from "./Algorithms/Dijkstra"
 import Button from 'react-bootstrap/Button'
 
-// import Dijkstra from "./Algorithms/Dijkstra"
-import Astar from "./Algorithms/Astar"
+import Dijkstra from "./Algorithms/Dijkstra"
+// import Astar from "./Algorithms/Astar"
 
 
 // set the Default starting and end node
 const START_NODE_ROW = 1;
 const START_NODE_COL = 1;
-const FINISH_NODE_ROW = 40;
-const FINISH_NODE_COL = 70;
+const FINISH_NODE_ROW = 30;
+const FINISH_NODE_COL = 30;
 
 
 
@@ -38,7 +37,7 @@ class PathfindingVisulizer extends Component {
     const {grid} = this.state;
     const startNode = grid[START_NODE_ROW][START_NODE_COL]
     const finishNode = grid[FINISH_NODE_ROW][FINISH_NODE_COL];
-    const visitedNodeinOrder = Astar(grid, startNode, finishNode);
+    const visitedNodeinOrder = Dijkstra(grid, startNode, finishNode);
     const shortestPathList = shortestPath(finishNode);
 
     // generating a shortestPath with starting node as the first index
@@ -110,9 +109,9 @@ class PathfindingVisulizer extends Component {
 // generating a matrix called grid (20X40) with node for each index
 const makeGrid = () => {
   const grid = [];
-  for (let row = 0; row < 42; row++) {
+  for (let row = 0; row < 43; row++) {
     const current_row = [];
-    for (let col = 0; col < 81; col++) {
+    for (let col = 0; col < 82; col++) {
       current_row.push(createNode(col, row));
     }
     grid.push(current_row);
