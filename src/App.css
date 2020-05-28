@@ -4,6 +4,7 @@
   text-align: center;
   font-size: 30px;
   padding: 5px 0;
+  font-weight: bold;
 }
 
 .nav-bar {
@@ -28,3 +29,18 @@
   color: white;
 }
 
+#dropdown-basic-button {
+  background-color: cadetblue;
+  border: none;
+  font-size: 30px; 
+  font-weight: bold;
+}
+
+#dropdown-basic-button:focus {
+  outline: none;
+  box-shadow: none;
+}
+
+#dropdown-basic-button:hover{
+  color: brown;
+}

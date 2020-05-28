@@ -1,6 +1,8 @@
 import React, { Component } from "react";
 import "./App.css";
 import PathfindingVisualizer from "./PathfindingVisualizer/PathfindingVisualizer";
+import DropdownButton from 'react-bootstrap/DropdownButton';
+import Dropdown from 'react-bootstrap/Dropdown'; 
 
 class App extends Component {
   render() {
@@ -15,20 +17,42 @@ class App extends Component {
 }
 
 class TopHeader extends React.Component {
+  constructor() {
+    super();
+    this.state = {
+      dropDownValue: "Algorithms"
+    }
+  }
+
+  changeValue(text) {
+    this.setState({dropDownValue: text})
+  }
+
   render() {
     return (
       <div id="page-header">
+        
         <div className="title-header">Path Finding Visualizer</div>
         <ul className="nav-bar">
           <li>
-            algorithms:
-            <select>
-              <option>Dijkstra's</option>
-              <option>A* Search</option>
-              <option>Breath First Search</option>
-              <option>Greedy Best First Search</option>
-              <option>Depth First Search</option>
-            </select>
+          <DropdownButton id="dropdown-basic-button" title={this.state.dropDownValue}>
+            <Dropdown.Item as="button">
+              <div onClick={(e) => this.changeValue(e.target.textContent)}>Dijkstra</div>
+            </Dropdown.Item>
+            <Dropdown.Item as="button">
+            <div onClick={(e) => this.changeValue(e.target.textContent)}>A* Search</div>
+            </Dropdown.Item>
+            <Dropdown.Item as="button">
+            <div onClick={(e) => this.changeValue(e.target.textContent)}>Breath First search</div>
+            </Dropdown.Item>
+            <Dropdown.Item as="button">
+            <div onClick={(e) => this.changeValue(e.target.textContent)}>Greedy Best First search</div>
+            </Dropdown.Item>
+            <Dropdown.Item as="button">
+             <div onClick={(e) => this.changeValue(e.target.textContent)}>Depth First search</div>
+            </Dropdown.Item>
+          </DropdownButton>
+
           </li>
           <li className="nav-element">
             <button type="button" className="nav-button">
@@ -60,5 +84,7 @@ class Footer extends React.Component {
     );
   }
 }
+
+
 
 export default App;
