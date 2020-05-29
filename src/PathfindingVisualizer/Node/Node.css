@@ -42,3 +42,12 @@
   display: inline-block;
   margin: 0 0;
 }
+
+.node-wall {
+  border: lightblue 1px solid;
+  width: 25px;
+  height: 25px;
+  background-color: black;
+  display: inline-block;
+  margin: 0 0; 
+}

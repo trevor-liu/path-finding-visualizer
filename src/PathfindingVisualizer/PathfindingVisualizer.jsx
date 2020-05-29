@@ -24,14 +24,29 @@ class PathfindingVisulizer extends Component {
       width: window.innerWidth,
       height: window.innerHeight,
       grid: [],
+      mouseIsPressed: false,
     };
   }
-
 
   // It render initialy to greate a grid
   componentDidMount() {
     const grid = makeGrid();
     this.setState({ grid });
+  }
+
+  handleMouseDown(row, col) {
+    const newGrid = getNewGrid(this.state.grid, row, col);
+    this.setState({grid: newGrid, mouseIsPressed: true});
+  }
+
+  handleMouseEnter(row, col) {
+    if (!this.state.mouseIsPressed) return;
+    const newGrid = getNewGrid(this.state.grid, row, col);
+    this.setState({grid: newGrid, mouseIsPressed: true});
+  }
+
+  handleMouseUp(row, col) {
+    this.setState({mouseIsPressed: false});
   }
 
   animateAlgo() {
@@ -69,8 +84,7 @@ class PathfindingVisulizer extends Component {
   }
 
   render() {
-    console.log(window.innerHeight);
-    const { grid } = this.state;
+    const { grid, mouseIsPressed } = this.state;
     return (
       <div>
         <div className="visual-div" id="visual-div">
@@ -86,14 +100,21 @@ class PathfindingVisulizer extends Component {
               <div key={rowIDX} className="row">
                 {/* iterate through the matrix to display the node element */}
                 {row.map((node, nodeIDX) => {
-                  const {row, col, isFinish, isStart} = node;
+                  let {row, col, isFinish, isStart, isWall} = node;
+                  
                   // passing in properties for creating a node object
                   return (<Node
                     key={nodeIDX}
                     col = {col}
                     row = {row}
                     isStart = {isStart}
-                    isFinish = {isFinish} />);
+                    isFinish = {isFinish}
+                    isWall = {isWall}
+                    mouseIsPressed = {mouseIsPressed}
+                    onMouseDown={(row, col) => this.handleMouseDown(row, col)}
+                    onMouseEnter={(row, col) => this.handleMouseEnter(row, col)}
+                    onMouseUp={() => this.handleMouseUp()}
+                     />);
               })}
               </div>
           )}
@@ -128,7 +149,7 @@ const createNode = (col, row) => {
   return {
     col,
     row,
-
+    isWall: false,
     // if the node row and col is the default start or end node
     isStart: row === START_NODE_ROW && col === START_NODE_COL,
     isFinish: row === FINISH_NODE_ROW && col === FINISH_NODE_COL,
@@ -152,6 +173,17 @@ const shortestPath = (finishNode) => {
   }
   return shortestPathList;
 }
+
+const getNewGrid = (grid, row, col) => {
+  const newGrid = grid.slice();
+  const node = newGrid[row][col];
+  const newNode = {
+    ...node,
+    isWall: !node.isWall
+  };
+  newGrid[row][col] = newNode;
+  return newGrid;
+};
 
 
 export default PathfindingVisulizer;
