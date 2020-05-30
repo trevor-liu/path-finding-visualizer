@@ -4,8 +4,8 @@ import Node from "./Node/Node";
 
 import Button from 'react-bootstrap/Button'
 
-import Dijkstra from "./Algorithms/Dijkstra"
-// import Astar from "./Algorithms/Astar"
+// import Dijkstra from "./Algorithms/Dijkstra"
+import Astar from "./Algorithms/Astar"
 
 
 // set the Default starting and end node
@@ -34,26 +34,30 @@ class PathfindingVisulizer extends Component {
     this.setState({ grid });
   }
 
+// ----------------------------------------------------------- Handling use interctive control ----------------------------------//
+  
   handleMouseDown(row, col) {
-    const newGrid = getNewGrid(this.state.grid, row, col);
-    this.setState({grid: newGrid, mouseIsPressed: true});
+    toggleWall(this.state.grid, row, col);
+    this.setState({mouseIsPressed: true});
   }
 
   handleMouseEnter(row, col) {
     if (!this.state.mouseIsPressed) return;
-    const newGrid = getNewGrid(this.state.grid, row, col);
-    this.setState({grid: newGrid, mouseIsPressed: true});
+    toggleWall(this.state.grid, row, col);
+    this.setState({mouseIsPressed: true});
   }
 
   handleMouseUp(row, col) {
     this.setState({mouseIsPressed: false});
   }
 
+// ---------------------------------------------------------------Animating Algorithms ------------------------------------------------------------// 
+
   animateAlgo() {
     const {grid} = this.state;
     const startNode = grid[START_NODE_ROW][START_NODE_COL]
     const finishNode = grid[FINISH_NODE_ROW][FINISH_NODE_COL];
-    const visitedNodeinOrder = Dijkstra(grid, startNode, finishNode);
+    const visitedNodeinOrder = Astar(grid, startNode, finishNode);
     const shortestPathList = shortestPath(finishNode);
 
     // generating a shortestPath with starting node as the first index
@@ -82,6 +86,10 @@ class PathfindingVisulizer extends Component {
       }, 20*index);
     }
   }
+
+  // ------------------------------------------------------------------Rendering entire grid constantly-----------------------------------------------------------------------------// 
+            // Too much things rendering at the same time
+            // Suggestion: only render entire grid during animation stage, and render indiidual node otherwise
 
   render() {
     const { grid, mouseIsPressed } = this.state;
@@ -125,9 +133,15 @@ class PathfindingVisulizer extends Component {
 }
 
 
-/*---------------------------------------------------------------------------------*/
-// Helper function
+/*----------------------------------------------------------------------------------------Helper Function ----------------------------------*/
 
+// Used when user drag their mouse to toggle Wall
+const toggleWall = (grid, row, col) => {
+  const node = grid[row][col];
+  node.isWall = !node.isWall;
+  grid[row][col] = node;
+  return grid;
+};
 
 // generating a matrix called grid (20X40) with node for each index
 const makeGrid = () => {
@@ -174,16 +188,6 @@ const shortestPath = (finishNode) => {
   return shortestPathList;
 }
 
-const getNewGrid = (grid, row, col) => {
-  const newGrid = grid.slice();
-  const node = newGrid[row][col];
-  const newNode = {
-    ...node,
-    isWall: !node.isWall
-  };
-  newGrid[row][col] = newNode;
-  return newGrid;
-};
 
 
 export default PathfindingVisulizer;

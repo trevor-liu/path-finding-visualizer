@@ -11,10 +11,15 @@ function Astar(grid, startNode, endNode) {
         sortingUnvisted(unvisitedNode);
         // first we get the closest node to the last node
         const closestNode = unvisitedNode.shift();
-        // add the closest node in visited node in ordered
 
+        if (closestNode.isWall) continue;
+        
+        // add the closest node in visited node in ordered and mark isVisited
         closestNode.isVisited = true;
         visitedNode.push(closestNode);
+
+        // It processed all node on grid
+        if (closestNode.distance === Infinity) return visitedNode;
         // if the closest node = end node, return the visited node array
         if (closestNode === endNode) return visitedNode ;
         // find all the neigbours node to distance + 1
