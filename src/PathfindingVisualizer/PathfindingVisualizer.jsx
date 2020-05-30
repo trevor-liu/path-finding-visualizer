@@ -4,15 +4,15 @@ import Node from "./Node/Node";
 
 import Button from 'react-bootstrap/Button'
 
-// import Dijkstra from "./Algorithms/Dijkstra"
+import Dijkstra from "./Algorithms/Dijkstra"
 import Astar from "./Algorithms/Astar"
 
 
 // set the Default starting and end node
-const START_NODE_ROW = Math.floor(Math.floor(window.innerHeight/25)/3);
-const START_NODE_COL = Math.floor(Math.floor(window.innerWidth/25)/4)*1;
-const FINISH_NODE_ROW = Math.floor(Math.floor(window.innerHeight/25)/3);
-const FINISH_NODE_COL = Math.floor(Math.floor(window.innerWidth/25)/4)*3;
+let START_NODE_ROW = Math.floor(Math.floor(window.innerHeight/25)/3);
+let START_NODE_COL = Math.floor(Math.floor(window.innerWidth/25)/4)*1;
+let FINISH_NODE_ROW = Math.floor(Math.floor(window.innerHeight/25)/3);
+let FINISH_NODE_COL = Math.floor(Math.floor(window.innerWidth/25)/4)*3;
 
 
 
@@ -25,6 +25,8 @@ class PathfindingVisulizer extends Component {
       height: window.innerHeight,
       grid: [],
       mouseIsPressed: false,
+      draggingStartNode: false,
+      draggingEndNode: false
     };
   }
 
@@ -37,28 +39,88 @@ class PathfindingVisulizer extends Component {
 // ----------------------------------------------------------- Handling use interctive control ----------------------------------//
   
   handleMouseDown(row, col) {
-    toggleWall(this.state.grid, row, col);
-    this.setState({mouseIsPressed: true});
+    if (row === START_NODE_ROW && col === START_NODE_COL){
+      this.setState({draggingStartNode: true});
+    }
+    if (row === FINISH_NODE_ROW && col === FINISH_NODE_COL){
+      this.setState({draggingEndNode: true});
+    }
+    else{
+      toggleWall(this.state.grid, row, col);
+      this.setState({mouseIsPressed: true});
+    }
   }
 
+  // When mouse is pressed and entering a node
   handleMouseEnter(row, col) {
     if (!this.state.mouseIsPressed) return;
-    toggleWall(this.state.grid, row, col);
+    if (this.state.draggingStartNode){
+      toggleStart(this.state.grid, row, col);
+      this.setState({draggingStartNode: true});
+
+      // ----------
+      START_NODE_ROW = row;
+      START_NODE_COL = col;
+      
+    }
+    // if (this.state.draggingStartNode){
+    //   toggleEnd(this.state.grid, row, col);
+    //   this.setState({draggingEndNode: true});
+    //   // ----------
+    //   FINISH_NODE_ROW = row;
+    //   FINISH_NODE_COL = col;
+    // } 
+    else {
+      toggleWall(this.state.grid, row, col);
+    }
+    this.setState({mouseIsPressed: true});
+    
+  }
+  // When mouse is presed and leaving a node
+  handleMouseLeave(row, col) {
+    if (!this.state.mouseIsPressed) return;
+    if (this.state.draggingStartNode){
+      toggleStart(this.state.grid, row, col);
+    }
+    // if (this.state.draggingEndNode){
+    //   toggleEnd(this.state.grid, row, col);
+    // }
+
     this.setState({mouseIsPressed: true});
   }
-
+  
+  // when releasing the mouse
   handleMouseUp(row, col) {
+    this.setState({draggingStartNode: false});
+    this.setState({draggingEndNode: false});
     this.setState({mouseIsPressed: false});
   }
-
 // ---------------------------------------------------------------Animating Algorithms ------------------------------------------------------------// 
 
   animateAlgo() {
+    let algorithm = document.getElementById("dropdown-basic-button").innerHTML
+    console.log(algorithm)
     const {grid} = this.state;
     const startNode = grid[START_NODE_ROW][START_NODE_COL]
     const finishNode = grid[FINISH_NODE_ROW][FINISH_NODE_COL];
-    const visitedNodeinOrder = Astar(grid, startNode, finishNode);
+    let visitedNodeinOrder = [];
+    // selecting algorithms
+    switch (algorithm) {
+      case "Dijkstra":
+        visitedNodeinOrder = Dijkstra(grid, startNode, finishNode);
+        break;
+      case "A* Search":
+        visitedNodeinOrder = Astar(grid, startNode, finishNode);
+        break;
+      default:
+        alert("Please select valid algorithm");
+        break;
+    }
+
+    //const visitedNodeinOrder = Astar(grid, startNode, finishNode);
     const shortestPathList = shortestPath(finishNode);
+
+    
 
     // generating a shortestPath with starting node as the first index
     for (let index = 1; index <= visitedNodeinOrder.length-1; index++) {
@@ -100,7 +162,7 @@ class PathfindingVisulizer extends Component {
             document.getElementById("visualize-btn").classList.toggle("changecolor")
             document.getElementById("visual-div").classList.toggle("changecolor")
             this.animateAlgo()
-          }}>Visualize Dijkstra</Button>
+          }}>Visualize!</Button>
         </div>
         <div className="grid">
           {grid.map((row, rowIDX) => 
@@ -121,6 +183,7 @@ class PathfindingVisulizer extends Component {
                     mouseIsPressed = {mouseIsPressed}
                     onMouseDown={(row, col) => this.handleMouseDown(row, col)}
                     onMouseEnter={(row, col) => this.handleMouseEnter(row, col)}
+                    onMouseLeave={(row, col) => this.handleMouseLeave(row, col)}
                     onMouseUp={() => this.handleMouseUp()}
                      />);
               })}
@@ -136,6 +199,20 @@ class PathfindingVisulizer extends Component {
 /*----------------------------------------------------------------------------------------Helper Function ----------------------------------*/
 
 // Used when user drag their mouse to toggle Wall
+const toggleStart = (grid, row, col) => {
+  const node = grid[row][col];
+  node.isStart = !node.isStart;
+  grid[row][col] = node;
+  return grid;
+}
+
+// const toggleEnd = (grid, row, col) => {
+//   const node = grid[row][col];
+//   node.isFinish = !node.isFinish;
+//   grid[row][col] = node;
+//   return grid;
+// }
+
 const toggleWall = (grid, row, col) => {
   const node = grid[row][col];
   node.isWall = !node.isWall;
