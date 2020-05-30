@@ -41,38 +41,48 @@ class PathfindingVisulizer extends Component {
   handleMouseDown(row, col) {
     if (row === START_NODE_ROW && col === START_NODE_COL){
       this.setState({draggingStartNode: true});
+      this.setState({mouseIsPressed: true});
+      return;
     }
     if (row === FINISH_NODE_ROW && col === FINISH_NODE_COL){
       this.setState({draggingEndNode: true});
-    }
-    else{
-      toggleWall(this.state.grid, row, col);
       this.setState({mouseIsPressed: true});
+      return;
     }
+    
+    toggleWall(this.state.grid, row, col);
+    this.setState({mouseIsPressed: true});
+  
   }
 
   // When mouse is pressed and entering a node
   handleMouseEnter(row, col) {
     if (!this.state.mouseIsPressed) return;
+
     if (this.state.draggingStartNode){
       toggleStart(this.state.grid, row, col);
       this.setState({draggingStartNode: true});
+      this.setState({mouseIsPressed: true});
 
       // ----------
       START_NODE_ROW = row;
       START_NODE_COL = col;
+      return;
       
     }
-    // if (this.state.draggingStartNode){
-    //   toggleEnd(this.state.grid, row, col);
-    //   this.setState({draggingEndNode: true});
-    //   // ----------
-    //   FINISH_NODE_ROW = row;
-    //   FINISH_NODE_COL = col;
-    // } 
-    else {
-      toggleWall(this.state.grid, row, col);
+
+    if (this.state.draggingEndNode) {
+      toggleEnd(this.state.grid, row, col);
+      this.setState({draggingEndNode: true});
+      this.setState({mouseIsPressed: true});
+
+      // -------
+      FINISH_NODE_ROW = row;
+      FINISH_NODE_COL = col;
+      return;
     }
+
+    toggleWall(this.state.grid, row, col);
     this.setState({mouseIsPressed: true});
     
   }
@@ -82,9 +92,10 @@ class PathfindingVisulizer extends Component {
     if (this.state.draggingStartNode){
       toggleStart(this.state.grid, row, col);
     }
-    // if (this.state.draggingEndNode){
-    //   toggleEnd(this.state.grid, row, col);
-    // }
+
+    if (this.state.draggingEndNode) {
+      toggleEnd(this.state.grid, row, col);
+    }
 
     this.setState({mouseIsPressed: true});
   }
@@ -206,12 +217,12 @@ const toggleStart = (grid, row, col) => {
   return grid;
 }
 
-// const toggleEnd = (grid, row, col) => {
-//   const node = grid[row][col];
-//   node.isFinish = !node.isFinish;
-//   grid[row][col] = node;
-//   return grid;
-// }
+const toggleEnd = (grid, row, col) => {
+  const node = grid[row][col];
+  node.isFinish = !node.isFinish;
+  grid[row][col] = node;
+  return grid;
+}
 
 const toggleWall = (grid, row, col) => {
   const node = grid[row][col];

@@ -55,8 +55,8 @@ class TopHeader extends React.Component {
             </DropdownButton>
           </li>
           <li className="nav-element">
-            <Button id="stop-vis">
-              Stop
+            <Button id="stop-vis" onClick={() => {window.location.reload(false)}}>
+              Clear Board
             </Button>
           </li>
           <li className="nav-element">
