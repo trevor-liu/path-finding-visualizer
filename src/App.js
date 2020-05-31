@@ -79,7 +79,7 @@ class Footer extends React.Component {
   render() {
     return (
       <div id="page-footer" className="footer">
-        Version 1.0.1
+        Version 1.1.1
       </div>
     );
   }

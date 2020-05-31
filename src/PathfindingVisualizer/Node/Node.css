@@ -1,6 +1,7 @@
 .node {
-    border: lightblue 1px solid;
-    background-color: white;
+    border: rgb(54, 18, 18) 1px solid;
+    /* border: lightblue 1px solid; */
+    background-color: black;
     width: 25px;
     height: 25px;
     display: inline-block;
@@ -29,7 +30,7 @@
   border: lightblue 1px solid;
   width: 25px;
   height: 25px;
-  background-color: rgb(0, 255, 64);
+  background-color: yellow;
   display: inline-block;
   margin: 0 0;
 }
@@ -38,16 +39,86 @@
   border: lightblue 1px solid;
   width: 25px;
   height: 25px;
-  background-color: rgb(0, 195, 255);
   display: inline-block;
   margin: 0 0;
+  animation-name: visitedAnimation;
+  animation-duration: 0.3s;
+  animation-timing-function: ease-out;
+  animation-delay: 0;
+  animation-direction: alternate;
+  animation-iteration-count: 1;
+  animation-fill-mode: forwards;
+  animation-play-state: running;
 }
 
-.node-wall {
-  border: lightblue 1px solid;
+/* @keyframes visitedAnimation {
+  0% {
+    transform: scale(.3);
+    background-color: rgba(0, 0, 66, 0.75);
+    border-radius: 100%;
+  }
+
+  50% {
+    background-color: rgba(17, 104, 217, 0.75);
+  }
+
+  75% {
+    transform: scale(1.2);
+    background-color: rgba(0, 217, 159, 0.75)
+  }
+
+  100% {
+    transform: scale(1.0);
+    background-color: rgba(0, 190, 218, 0.75);
+  }
+} */
+
+@keyframes visitedAnimation {
+  0% {
+    background-color: rgb(210, 232, 240);
+  }
+
+  100% {
+    background-color: rgb(10, 127, 167);
+  }  
+}
+
+.node-wall{
   width: 25px;
   height: 25px;
-  background-color: black;
   display: inline-block;
   margin: 0 0; 
+  animation-name: wallAnimation;
+  animation-duration: 0.3s;
+  animation-timing-function: ease-out;
+  animation-delay: 0;
+  animation-direction: alternate;
+  animation-iteration-count: 1;
+  animation-fill-mode: forwards;
+  animation-play-state: running;
+}
+
+/* @keyframes wallAnimation {
+  0% {
+    transform: scale(1.4);
+    background-color: lightgreen;
+  }
+
+  100% {
+    transform: scale(1.0);
+    background-color: darkgreen;
+  }
+} */
+
+@keyframes wallAnimation {
+  0% {
+    transform: scale(1.4);
+    /* background-color: rgb(122, 4, 4); */
+    background-color: rgb(46, 163, 46);
+  }
+
+  100% {
+    transform: scale(1.0);
+    background-color: darkgreen;
+  }
 }

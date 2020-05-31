@@ -138,13 +138,13 @@ class PathfindingVisulizer extends Component {
       if (index === visitedNodeinOrder.length-1) {
         setTimeout(() => {
           this.animateShortest(shortestPathList);
-        }, index*1);
+        }, index*3);
         return;    
       }
       setTimeout(() => {
         const currentNode = visitedNodeinOrder[index];
         document.getElementById(`${currentNode.row},${currentNode.col}`).className="node-animation"
-       }, 1*index);
+       }, 3*index);
     }
   }
 
