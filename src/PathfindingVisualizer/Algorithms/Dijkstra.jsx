@@ -18,7 +18,7 @@ function Dijkstra(grid, startNode, endNode) {
         closestNode.isVisited = true;
         visitedNode.push(closestNode);
 
-        // It processed all node on grid
+        // If it is trapped and the closest node is Infinity distance away
         if (closestNode.distance === Infinity) return visitedNode;
         // if the closest node = end node, return the visited node array
         if (closestNode === endNode) return visitedNode ;

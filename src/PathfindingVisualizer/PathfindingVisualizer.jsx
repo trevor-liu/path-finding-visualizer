@@ -6,6 +6,7 @@ import Button from 'react-bootstrap/Button'
 
 import Dijkstra from "./Algorithms/Dijkstra"
 import Astar from "./Algorithms/Astar"
+import BreadthFirstSearch from "./Algorithms/BreadthFirstSearch";
 
 
 // set the Default starting and end node
@@ -122,6 +123,9 @@ class PathfindingVisulizer extends Component {
         break;
       case "A* Search":
         visitedNodeinOrder = Astar(grid, startNode, finishNode);
+        break;
+      case "Breadth First search":
+        visitedNodeinOrder = BreadthFirstSearch(grid, startNode, finishNode);
         break;
       default:
         alert("Please select valid algorithm");

@@ -44,7 +44,7 @@ class TopHeader extends React.Component {
               <div onClick={(e) => this.changeValue(e.target.textContent)}>A* Search</div>
               </Dropdown.Item>
               <Dropdown.Item as="button">
-              <div onClick={(e) => this.changeValue(e.target.textContent)}>Breath First search</div>
+              <div onClick={(e) => this.changeValue(e.target.textContent)}>Breadth First search</div>
               </Dropdown.Item>
               <Dropdown.Item as="button">
               <div onClick={(e) => this.changeValue(e.target.textContent)}>Greedy Best First search</div>
